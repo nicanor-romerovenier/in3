@@ -1,11 +1,14 @@
-#include <Arduino.h>
+#include <memory>
 
-#include <Adafruit_GFX_AS.h>
-#include <EEPROM.h>
+#include <Arduino.h>
 #include <Adafruit_ILI9341_STM.h> // STM32 DMA Hardware-specific library
-#include <SPI.h>
-#include "DHT.h"
+#include <Adafruit_GFX_AS.h>
+#include <DHT.h>
+#include <EEPROM.h>
 #include <PID_v1.h>
+#include <SPI.h>
+
+#include "StorageManager.h"
 
 #define FWversion "v1.12"
 #define headingTitle "in3ator"
@@ -339,10 +342,14 @@ int heaterPIDfactor = heaterPIDRate / NTCInterruptRate;
 HardwareTimer timer(1);
 HardwareTimer roomPIDTimer(2);
 
+
 void setup() {
   Serial.begin(115200);
   Serial.print("IN3ATOR, VERSION ");
   Serial.println(FWversion);
+
+  std::unique_ptr<StorageManager> storageManager = std::unique_ptr<StorageManager>(new StorageManager());
+
   initEEPROM();
   pinDirection();
   initPIDTimers();
@@ -350,17 +357,7 @@ void setup() {
   tft.setRotation(1);
   loadLogo();
   dht.setup(DHTPIN);
-  /*
-  while (1) {
-	tft.fillScreen(introTextColor);
-	tft.setTextColor(introBackColor);
-	hardwareVerification();
-	while (digitalRead(pulse));
-	delay(100);
-	while (!digitalRead(pulse));
-	delay(100);
-  }
-  */
+
   initEncoders();
   newPosition = myEncoderRead();
   oldPosition = newPosition;

@@ -1,3 +1,5 @@
+#include "UserInterfaceHandler.h"
+
 void actuatorsProgress() {
   byte  numWords = 0;
   temperaturePercentage = 0;
@@ -13,11 +15,11 @@ void actuatorsProgress() {
   if (controlTemperature) {
     temperatureAtStart = temperature[roomNTC];
     printLoadingTemperatureBar();
-    switch (language) {
-      case spanish:
+    switch (storageManager->getLanguage()) {
+      case UserInterfaceHandler::Language::SPANISH:
         textToWrite = "Temperatura";
         break;
-      case english:
+      case UserInterfaceHandler::Language::ENGLISH:
       case french:
         textToWrite = "Temperature";
         break;
@@ -28,7 +30,7 @@ void actuatorsProgress() {
   if (controlHumidity) {
     humidityAtStart = humidity;
     printLoadingHumidityBar();
-    switch (language) {
+    switch (storageManager->getLanguage()) {
       case spanish:
         textToWrite = "Humedad";
         break;

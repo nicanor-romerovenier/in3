@@ -1,3 +1,6 @@
+#include "UserInterfaceHandler.h"
+
+
 void barSelection() {
   bar_pos = 1;
   selected = 0;
@@ -132,8 +135,8 @@ void barSelection() {
                 updateData();
                 if (move) {
                   tft.setTextColor(COLOR_MENU);
-                  if (auto_lock) {
-                    switch (language) {
+                  if (storageManager()->getAutoLock()) {
+                    switch (storageManager->getLanguage()) {
                       case spanish:
                         textToWrite = "SI";
                         break;
@@ -146,7 +149,7 @@ void barSelection() {
                     }
                     tft.drawRightString(textToWrite, unitPosition, ypos, textFontSize);
                     tft.setTextColor(COLOR_MENU_TEXT);
-                    switch (language) {
+                    switch (storageManager->getLanguage()) {
                       case spanish:
                         textToWrite = "NO";
                         break;
@@ -161,7 +164,7 @@ void barSelection() {
                   }
                   else {
                     tft.setTextColor(COLOR_MENU);
-                    switch (language) {
+                    switch (storageManager->getLanguage()) {
                       case spanish:
                         textToWrite = "NO";
                         break;
@@ -174,7 +177,7 @@ void barSelection() {
                     }
                     tft.drawRightString(textToWrite, unitPosition, ypos, textFontSize);
                     tft.setTextColor(COLOR_MENU_TEXT);
-                    switch (language) {
+                    switch (storageManager->getLanguage()) {
                       case spanish:
                         textToWrite = "SI";
                         break;
@@ -187,8 +190,8 @@ void barSelection() {
                     }
                     tft.drawRightString(textToWrite, unitPosition, ypos, textFontSize);
                   }
-                  auto_lock = !auto_lock;
-                  EEPROM.write(EEPROM_autoLock, auto_lock);
+                  storageManager->setAutoLock(!storageManager->getAutoLock());
+                  storageManager->writeAutoLockToStorage();
                   move = 0;
                 }
               }
@@ -198,7 +201,7 @@ void barSelection() {
                 updateData();
                 if (move) {
                   tft.setTextColor(COLOR_MENU);
-                  switch (language) {
+                  switch (storageManager->getLanguage()) {
                     case spanish:
                       textToWrite = "SPA";
                       break;
@@ -210,15 +213,17 @@ void barSelection() {
                       break;
                   }
                   tft.drawRightString(textToWrite, unitPosition, ypos, textFontSize);
-                  language -= move;
-                  if (language < firstLanguage) {
-                    language = numLanguages;
+
+                  userInterfaceHandler->setCurrentLanguage(userInterfaceHandler->getCurrentLanguage() - move);
+
+                  if (storageManager->getLanguage() < firstLanguage) {
+                    userInterfaceHandler->setCurrentLanguage(UserInterfaceHandler::Language::FRENCH);
                   }
-                  if (language > numLanguages) {
-                    language = firstLanguage;
+                  if (storageManager->getLanguage() > numLanguages) {
+                    storageManager->setLanguage(firstLanguage);
                   }
                   tft.setTextColor(COLOR_MENU_TEXT);
-                  switch (language) {
+                  switch (storageManager->getLanguage()) {
                     case spanish:
                       textToWrite = "SPA";
                       break;
@@ -230,7 +235,7 @@ void barSelection() {
                       break;
                   }
                   tft.drawRightString(textToWrite, unitPosition, ypos, textFontSize);
-                  EEPROM.write(EEPROM_language, language);
+                  storageManager->writeLanguageToStorage();
                   move = 0;
                 }
               }
@@ -264,7 +269,7 @@ void barSelection() {
               }
               break;
             case setStandardValuesGraphicPosition:
-              loadStandardValues();
+              storageManager->loadStandardValues();
               settings();
               break;
             case calibrateGraphicPosition:
@@ -364,7 +369,7 @@ void checkSetMessage() {
     else {
       tft.setTextColor(COLOR_MENU);
     }
-    switch (language) {
+    switch (storageManager->getLanguage()) {
       case english:
         helpMessage = "Set desired temperature";
         break;

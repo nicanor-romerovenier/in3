@@ -8,7 +8,7 @@ void calibrateSensors() {
     pos_text[i] = 0;
   }
   pos_text[2] = 1;
-  switch (language) {
+  switch (storageManager->getLanguage()) {
     case english:
       words[temperatureCalibrationGraphicPosition]  = "Temperature";
       words[humidityCalibrationGraphicPosition] = "Humidity";

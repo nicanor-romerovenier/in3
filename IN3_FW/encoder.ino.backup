@@ -12,7 +12,7 @@ void asleep() {
     last_something = millis();
   }
   pulsed_before = pulsed;
-  if (auto_lock) {
+  if (storageManager->getAutoLock()) {
     if (millis() - last_something > time_lock) {
       analogWrite(SCREENBACKLIGHT, 0);
     }

@@ -16,7 +16,7 @@ void menu() {
   }
   pos_text[settingsGraphicPosition] = 1;
   pos_text[startGraphicPosition] = 1;
-  switch (language) {
+  switch (storageManager->getLanguage()) {
     case spanish:
       words[temperatureGraphicPosition]  = "Temperatura";
       words[humidityGraphicPosition] = "Humedad";

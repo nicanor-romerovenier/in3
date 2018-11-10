@@ -9,7 +9,7 @@ void settings() {
   }
   pos_text[setStandardValuesGraphicPosition] = 1;
   pos_text[calibrateGraphicPosition] = 1;
-  switch (language) {
+  switch (storageManager->getLanguage()) {
     case english:
       words[autoLockGraphicPosition]  = "Auto lock";
       words[languageGraphicPosition] = "Language";

@@ -9,7 +9,7 @@ void firstTurnOn() {
   for (int i = 0; i < numWords; i++) {
     pos_text[i] = 0;
   }
-  if (!language) {
+  if (!storageManager->getLanguage()) {
     words[0]  = "pulse to start";
     words[1]  = "Welcome to in3";
   }
@@ -42,7 +42,7 @@ void helpingMenu() {
   }
   pos_text[2] = 1;
   pos_text[3] = 1;
-  if (language) {
+  if (storageManager->getLanguage()) {
     words[0]  = "Temperatura";
     words[1] = "LEDS";
     words[2] = "Configuracion";

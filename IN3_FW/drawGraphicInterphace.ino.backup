@@ -51,8 +51,8 @@ void drawGraphicInterface() {
         case settingsPage:
           switch (i) {
             case autoLockGraphicPosition:
-              if (auto_lock) {
-                switch (language) {
+              if (storageManager->getAutoLock()) {
+                switch (storageManager->getLanguage()) {
                   case spanish:
                     textToWrite = "SI";
                     break;
@@ -65,7 +65,7 @@ void drawGraphicInterface() {
                 }
               }
               else {
-                switch (language) {
+                switch (storageManager->getLanguage()) {
                   case spanish:
                     textToWrite = "NO";
                     break;
@@ -80,7 +80,7 @@ void drawGraphicInterface() {
               tft.drawRightString(textToWrite, unitPosition, ypos, textFontSize);
               break;
             case languageGraphicPosition:
-              switch (language) {
+              switch (storageManager->getLanguage()) {
                 case spanish:
                   textToWrite = "SPA";
                   break;
@@ -192,7 +192,7 @@ void loadLogo() {
 
 void drawIntroMessage() {
   byte numWords = 1;
-  switch (language) {
+  switch (storageManager->getLanguage()) {
     case english:
       words[0]  = "Welcome to in3";
       break;
@@ -267,7 +267,7 @@ void drawCentreNumber(int n, int x, int i) {
 }
 
 void drawStop() {
-  switch (language) {
+  switch (storageManager->getLanguage()) {
     case spanish:
       textToWrite = "Pulsa 2 seg para salir";
       break;
@@ -300,7 +300,7 @@ void drawStartMessage() {
     tft.setTextColor(COLOR_MENU);
     tft.drawCentreString(helpMessage, width_select + (tft.width() - width_select) / 2, getYpos(goToProcessRow), textFontSize);
     tft.setTextColor(COLOR_MENU_TEXT);
-    switch (language) {
+    switch (storageManager->getLanguage()) {
       case spanish:
         words[startGraphicPosition] = "Empezar";
         break;

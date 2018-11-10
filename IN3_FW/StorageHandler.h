@@ -4,10 +4,10 @@
 #include "UserInterfaceHandler.h"
 
 
-class StorageManager
+class StorageHandler
 {
 public:
-    explicit StorageManager();
+    explicit StorageHandler();
 };
 
 #endif // STORAGEMANAGER_H

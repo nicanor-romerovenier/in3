@@ -3,5 +3,5 @@
 
 IncubatorManager::IncubatorManager()
 {
-    m_storage_manager = std::unique_ptr<StorageManager>(new StorageManager());
+    m_storage_handler = std::unique_ptr<StorageHandler>(new StorageHandler());
 }

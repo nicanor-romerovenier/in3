@@ -3,7 +3,8 @@
 
 #include <memory>
 
-#include "StorageManager.h"
+#include "StorageHandler.h"
+#include "UserInterfaceHandler.h"
 
 
 class IncubatorManager
@@ -12,7 +13,8 @@ public:
     IncubatorManager();
 
 private:
-    std::unique_ptr<StorageManager> m_storage_manager;
+    std::unique_ptr<StorageHandler> m_storage_handler;
+    std::unique_ptr<UserInterfaceHandler> m_user_interface_handler;
 };
 
 #endif // INCUBATORMANAGER_H

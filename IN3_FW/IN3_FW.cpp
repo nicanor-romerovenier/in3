@@ -344,46 +344,46 @@ HardwareTimer roomPIDTimer(2);
 
 
 void setup() {
-  Serial.begin(115200);
-  Serial.print("IN3ATOR, VERSION ");
-  Serial.println(FWversion);
+    Serial.begin(115200);
+    Serial.print("IN3ATOR, VERSION ");
+    Serial.println(FWversion);
 
-  std::unique_ptr<StorageManager> storageManager = std::unique_ptr<StorageManager>(new StorageManager());
+    std::unique_ptr<StorageManager> storageManager = std::unique_ptr<StorageManager>(new StorageManager());
 
-  initEEPROM();
-  pinDirection();
-  initPIDTimers();
-  tft.begin();
-  tft.setRotation(1);
-  loadLogo();
-  dht.setup(DHTPIN);
+    initEEPROM();
+    pinDirection();
+    initPIDTimers();
+    tft.begin();
+    tft.setRotation(1);
+    loadLogo();
+    dht.setup(DHTPIN);
 
-  initEncoders();
-  newPosition = myEncoderRead();
-  oldPosition = newPosition;
-  menu();
+    initEncoders();
+    newPosition = myEncoderRead();
+    oldPosition = newPosition;
+    menu();
 }
 
 
 void pinDirection() {
-  pinMode(SCREENBACKLIGHT, OUTPUT);
-  pinMode(pulse, INPUT_PULLUP);
-  pinMode(ICT, OUTPUT);
-  pinMode(HEATER, OUTPUT);
-  pinMode(POWER_EN, OUTPUT);
-  pinMode(FAN1, OUTPUT);
-  pinMode(FAN2, OUTPUT);
-  pinMode(FAN3, OUTPUT);
-  pinMode(STERILIZE, OUTPUT);
-  pinMode(HUMIDIFIER, OUTPUT);
+    pinMode(SCREENBACKLIGHT, OUTPUT);
+    pinMode(pulse, INPUT_PULLUP);
+    pinMode(ICT, OUTPUT);
+    pinMode(HEATER, OUTPUT);
+    pinMode(POWER_EN, OUTPUT);
+    pinMode(FAN1, OUTPUT);
+    pinMode(FAN2, OUTPUT);
+    pinMode(FAN3, OUTPUT);
+    pinMode(STERILIZE, OUTPUT);
+    pinMode(HUMIDIFIER, OUTPUT);
 
-  digitalWrite(SCREENBACKLIGHT, LOW);
-  digitalWrite(ICT, LOW);
-  digitalWrite(HEATER, LOW);
-  digitalWrite(POWER_EN, LOW);
-  digitalWrite(FAN1, LOW);
-  digitalWrite(FAN2, LOW);
-  digitalWrite(FAN3, LOW);
-  digitalWrite(STERILIZE, LOW);
-  digitalWrite(HUMIDIFIER, LOW);
+    digitalWrite(SCREENBACKLIGHT, LOW);
+    digitalWrite(ICT, LOW);
+    digitalWrite(HEATER, LOW);
+    digitalWrite(POWER_EN, LOW);
+    digitalWrite(FAN1, LOW);
+    digitalWrite(FAN2, LOW);
+    digitalWrite(FAN3, LOW);
+    digitalWrite(STERILIZE, LOW);
+    digitalWrite(HUMIDIFIER, LOW);
 }

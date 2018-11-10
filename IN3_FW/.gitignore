@@ -1,0 +1,6 @@
+build/
+.idea/
+*.config
+*.files
+*.includes
+*.creator*

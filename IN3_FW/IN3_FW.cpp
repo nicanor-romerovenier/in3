@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #include <Adafruit_GFX_AS.h>
 #include <EEPROM.h>
 #include <Adafruit_ILI9341_STM.h> // STM32 DMA Hardware-specific library
@@ -12,7 +14,7 @@
 #define debounceTime 100        //encoder debouncing time
 #define maxPWMvalue 255         //for maple mini
 #define maxHeaterPWM 255        //max power for heater, full power (255) is 50W
-#define temperature_fraction 20 //times to measure in a 
+#define temperature_fraction 20 //times to measure in a
 #define mosfet_switch_time 100   //in millis, oversized
 #define timePressToSettings 5000 //in millis, time to press to go to settings window
 #define CheckSensorRaiseTemp 3   //in celsius degrees, the amount of degrees to differentiate heater or room NTC
@@ -328,9 +330,9 @@ PID heaterPID(&temperature[heaterNTC], &PIDOutput[heaterNTC], &desiredHeaterTemp
 PID roomPID(&temperature[roomNTC], &PIDOutput[roomNTC], &desiredRoomTemp, Kp_room, Ki_room, Kd_room, P_ON_M, DIRECT);
 // timer
 #define temperaturePIDcontrol 0         //0 to disable, 1 to enable
-#define ENCODER_RATE 1000    // in microseconds; 
-#define NTCInterruptRate 20000    // in microseconds; 
-#define roomPIDRate 1000000    // in microseconds; 
+#define ENCODER_RATE 1000    // in microseconds;
+#define NTCInterruptRate 20000    // in microseconds;
+#define roomPIDRate 1000000    // in microseconds;
 #define heaterPIDRate 200000   // times of roomPIDRate;
 int roomPIDfactor = roomPIDRate / NTCInterruptRate;
 int heaterPIDfactor = heaterPIDRate / NTCInterruptRate;
@@ -350,13 +352,13 @@ void setup() {
   dht.setup(DHTPIN);
   /*
   while (1) {
-    tft.fillScreen(introTextColor);
-    tft.setTextColor(introBackColor);
-    hardwareVerification();
-    while (digitalRead(pulse));
-    delay(100);
-    while (!digitalRead(pulse));
-    delay(100);
+	tft.fillScreen(introTextColor);
+	tft.setTextColor(introBackColor);
+	hardwareVerification();
+	while (digitalRead(pulse));
+	delay(100);
+	while (!digitalRead(pulse));
+	delay(100);
   }
   */
   initEncoders();

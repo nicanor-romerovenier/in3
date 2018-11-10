@@ -1,8 +1,6 @@
 #include <memory>
 
 #include <Arduino.h>
-#include <Adafruit_ILI9341_STM.h> // STM32 DMA Hardware-specific library
-#include <Adafruit_GFX_AS.h>
 #include <DHT.h>
 #include <PID_v1.h>
 #include <SPI.h>

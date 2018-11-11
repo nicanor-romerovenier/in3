@@ -15,21 +15,29 @@ public:
 private:
     void initializeEncoder();
     static void readEncoders();
+    static void asleep();
 
     // TODO: Change to stdint types
     // TODO: Change HardwareTimer to unique_ptr
     // TODO: Change variable names
-    // TODO: Change static void readEncoder to void readEncoder
+    // TODO: readEncoder -> Detect encoder and call its own functions
+    // TODO: Get rid of static stuff
 
-    volatile int encodertimer;
+    static volatile int encodertimer;
     int encstate;
     int encflag;
-    bool A_set;
-    bool B_set;
-    int16_t encoderpos;
-    int encoderpinA;
-    int encoderpinB;
+    static bool A_set;
+    static bool B_set;
+    static int16_t encoderpos;
+    static int encoderpinA;
+    static int encoderpinB;
     unsigned int lastEncoderPos;
+    static long last_something;
+    static bool pulsed;
+    static bool pulsed_before;
+    static bool auto_lock;
+
+    static const uint8_t m_pulse = 14;
 
     std::unique_ptr<HardwareTimer> m_timer;
 

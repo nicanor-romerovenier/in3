@@ -14,7 +14,7 @@ public:
 
 private:
     std::unique_ptr<UserInterfaceView> m_ui_view;
-    std::unique_ptr<InputManager> m_input_handler;
+    std::unique_ptr<InputManager> m_input_manager;
 };
 
 #endif // USERINTERFACEHANDLER_H

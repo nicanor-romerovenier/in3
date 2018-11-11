@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "InputHandler.h"
+#include "InputManager.h"
 #include "UserInterfaceView.h"
 
 
@@ -14,7 +14,7 @@ public:
 
 private:
     std::unique_ptr<UserInterfaceView> m_ui_view;
-    std::unique_ptr<InputHandler> m_input_handler;
+    std::unique_ptr<InputManager> m_input_handler;
 };
 
 #endif // USERINTERFACEHANDLER_H

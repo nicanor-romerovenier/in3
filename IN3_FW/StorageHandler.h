@@ -1,5 +1,5 @@
-#ifndef STORAGEMANAGER_H
-#define STORAGEMANAGER_H
+#ifndef STORAGEHANDLER_H
+#define STORAGEHANDLER_H
 
 #include "UserInterfaceHandler.h"
 
@@ -10,4 +10,4 @@ public:
     explicit StorageHandler();
 };
 
-#endif // STORAGEMANAGER_H
+#endif // STORAGEHANDLER_H
